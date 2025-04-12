@@ -1,0 +1,119 @@
+﻿<Window x:Class="Memory.View.GameWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Memory.View"
+        mc:Ignorable="d"
+        Title="GameWindow" Height="450" Width="800">
+    <Grid>
+        <TabControl>
+            <TabItem Header="File">
+                <StackPanel>
+                    <Menu VerticalAlignment="Top" HorizontalAlignment="Stretch">
+                        <MenuItem Header="New Game" Command="{Binding NewGameCommand}" />
+                        <MenuItem Header="Load Game" Command="{Binding LoadGameCommand}"/>
+                        <MenuItem Header="Save Game" Command="{Binding SaveGameCommand}"/>
+                        <MenuItem Header="Statistics" Command="{Binding OpenStatsCommand}"/>
+                        <MenuItem Header="Back to main menu" Click="BackToMainMenuItem_Click"/>
+                    </Menu>
+                </StackPanel>
+            </TabItem>
+
+            <TabItem Header="Options">
+                <StackPanel>
+                    <Menu VerticalAlignment="Top" HorizontalAlignment="Stretch">
+                        <MenuItem Header="Dimensions">
+                            <MenuItem Header="Small (2x2)" IsCheckable="True"
+              IsChecked="{Binding SelectedDimension, Converter={StaticResource IsCheckedConverter}, ConverterParameter=Small (2x2)}"/>
+                            <MenuItem Header="Medium-Small (3x4)" IsCheckable="True"
+              IsChecked="{Binding SelectedDimension, Converter={StaticResource IsCheckedConverter}, ConverterParameter=Medium-Small (3x4)}" />
+                            <MenuItem Header="Standard (4x4)" IsCheckable="True"
+              IsChecked="{Binding SelectedDimension, Converter={StaticResource IsCheckedConverter}, ConverterParameter=Standard (4x4)}"/>
+                            <MenuItem Header="Medium-Large (5x6)" IsCheckable="True"
+              IsChecked="{Binding SelectedDimension, Converter={StaticResource IsCheckedConverter}, ConverterParameter=Medium-Large (5x6)}"/>
+                            <MenuItem Header="Large (6x6)" IsCheckable="True"
+              IsChecked="{Binding SelectedDimension, Converter={StaticResource IsCheckedConverter}, ConverterParameter=Large (6x6)}"/>
+                        </MenuItem>
+                        <MenuItem Header="Category">
+                            <MenuItem Header="Animals" IsCheckable="True"
+              IsChecked="{Binding SelectedCategory, Converter={StaticResource IsCheckedConverter}, ConverterParameter=Animals}"/>
+                            <MenuItem Header="Objects"  IsCheckable="True"
+              IsChecked="{Binding SelectedCategory, Converter={StaticResource IsCheckedConverter}, ConverterParameter=Objects}"/>
+                            <MenuItem Header="Characters" IsCheckable="True"
+              IsChecked="{Binding SelectedCategory, Converter={StaticResource IsCheckedConverter}, ConverterParameter=Characters}"/>
+                        </MenuItem>
+                        <MenuItem Header="Time">
+                            <MenuItem Header="Easy (5 minutes)" IsCheckable="True"
+              IsChecked="{Binding SelectedTime, Converter={StaticResource IsCheckedConverter}, ConverterParameter=Easy (5 minutes)}"/>
+                            <MenuItem Header="Medium (3:30 minutes)"  IsCheckable="True"
+              IsChecked="{Binding SelectedTime, Converter={StaticResource IsCheckedConverter}, ConverterParameter=Medium (3:30 minutes)}"/>
+                            <MenuItem Header="Hard (2 minutes)" IsCheckable="True"
+              IsChecked="{Binding SelectedTime, Converter={StaticResource IsCheckedConverter}, ConverterParameter=Hard (2 minutes)}"/>
+                        </MenuItem>
+                    </Menu>
+                </StackPanel>
+            </TabItem>
+
+            <TabItem Header="Help">
+                <StackPanel>
+                    <Menu VerticalAlignment="Top" HorizontalAlignment="Stretch">
+                        <MenuItem Header="About">
+                            <MenuItem Header="Mustata Teodora, grupa 10LF233 :)"/>
+                        </MenuItem>
+                    </Menu>
+                </StackPanel>
+            </TabItem>
+        </TabControl>
+        
+        <!--<Image Source="C:\Users\Teodora\Desktop\FACULTATE\Y2S2\MAP\Memory\Memory\images\back_of_card.jpg" x:Name="BackImage"/>-->
+
+        <Grid Name="GameArea" Margin="10,56,10,10">
+            <ItemsControl ItemsSource="{Binding FlattenedBoard}" Grid.ColumnSpan="5" Margin="15,45,15,14">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <UniformGrid Rows="{Binding gameModel.Rows}" Columns="{Binding gameModel.Columns}" />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Button Command="{Binding DataContext.FlipCardCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}" CommandParameter="{Binding}">
+
+                            <Button.Content>
+                                <Grid>
+                                    <!-- Spatele cartii -->
+                                    <!--<Image Source="C:\Users\Teodora\Desktop\FACULTATE\Y2S2\MAP\Memory\Memory\images\card_back.jpg" x:Name="BackImage"/>-->
+                                    <Image Source="pack://siteoforigin:,,,/images/card_back.jpg" />
+
+                                    <!-- Fata cartii -->
+                                    <Image Source="{Binding ImagePath}" x:Name="FrontImage">
+                                        <Image.Style>
+                                            <Style TargetType="Image">
+                                                <Style.Triggers>
+                                                    <!-- flipped -->
+                                                    <DataTrigger Binding="{Binding IsFlipped}" Value="True">
+                                                        <Setter Property="Visibility" Value="Visible"/>
+                                                    </DataTrigger>
+
+                                                    <!-- back of card -->
+                                                    <DataTrigger Binding="{Binding IsFlipped}" Value="False">
+                                                        <Setter Property="Visibility" Value="Collapsed"/>
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </Image.Style>
+                                    </Image>
+                                </Grid>
+                            </Button.Content>
+                        </Button>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </Grid>
+
+        <Label Content="{Binding TimeElapsedDisplay}" RenderTransformOrigin="4.154,-3.616" Margin="656,56,10,327"/>
+        <Label Content="{Binding MatchesDisplay}" RenderTransformOrigin="4.154,-3.616" Margin="485,56,181,327"/>
+
+
+    </Grid>
+</Window>

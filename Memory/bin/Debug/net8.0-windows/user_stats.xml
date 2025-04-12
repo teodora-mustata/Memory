@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AllUserStats xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <UserStats>
+    <Username>teo</Username>
+    <GamesPlayed>4</GamesPlayed>
+    <GamesWon>4</GamesWon>
+  </UserStats>
+  <UserStats>
+    <Username>stefi</Username>
+    <GamesPlayed>15</GamesPlayed>
+    <GamesWon>2</GamesWon>
+  </UserStats>
+  <UserStats>
+    <Username>teo2</Username>
+    <GamesPlayed>6</GamesPlayed>
+    <GamesWon>5</GamesWon>
+  </UserStats>
+</AllUserStats>

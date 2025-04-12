@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfUser xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <User>
+    <Name>teo</Name>
+    <AvatarPath>C:\Users\Teodora\Desktop\FACULTATE\Y2S2\MAP\Memory\Memory\profilePics\9057d0064f4ec3dac77811a2efe983ef.jpg</AvatarPath>
+  </User>
+  <User>
+    <Name>stefi</Name>
+    <AvatarPath>C:\Users\Teodora\Desktop\FACULTATE\Y2S2\MAP\Memory\Memory\profilePics\a26af877595941a7a8521a645bc94727.jpg</AvatarPath>
+  </User>
+  <User>
+    <Name>teo2</Name>
+    <AvatarPath>C:\Users\Teodora\Desktop\FACULTATE\Y2S2\MAP\Memory\Memory\profilePics\9421886baecb58ae6e3096ff2c92df7f.jpg</AvatarPath>
+  </User>
+</ArrayOfUser>
